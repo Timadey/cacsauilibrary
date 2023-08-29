@@ -1,0 +1,4 @@
+jstoolchain
+staticfiles
+*/__pycache__
+*/migrations

@@ -1,0 +1,19 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+psycopg2-binary = "==2.8.4"
+django-crispy-forms = "*"
+django-allauth = "==0.54.0"
+crispy-bootstrap5 = "*"
+install = "*"
+django-phonenumber-field = {version = "*", extras = ["phonenumberslite"]}
+pillow = "==10.0.0"
+
+[dev-packages]
+
+[requires]
+python_version = "2.7"

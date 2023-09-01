@@ -1,7 +1,7 @@
 import secrets
-from django.utils import timezone
 from datetime import datetime, timedelta
 
+from django.utils import timezone
 
 from bookstore_project.settings import MAX_DUE_DAY
 

@@ -5,13 +5,16 @@ name = "pypi"
 
 [packages]
 django = "*"
-psycopg2-binary = "==2.8.4"
+psycopg2-binary = "*"
 django-crispy-forms = "*"
 django-allauth = "==0.54.0"
 crispy-bootstrap5 = "*"
 install = "*"
 django-phonenumber-field = {version = "*", extras = ["phonenumberslite"]}
 pillow = "==10.0.0"
+whitenoise = "*"
+gunicorn = "*"
+django-environ = "*"
 
 [dev-packages]
 

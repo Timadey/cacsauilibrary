@@ -29,7 +29,15 @@
     <main class="mt-12 transition-all duration-200 ease-in-out">
       <div class="w-full px-6 py-6 mx-auto">
         <div class="flex flex-wrap mt-4 mb-4 justify-between">
-        {% block page_heading %}{% endblock page_heading %}
+          {% block page_heading %}{% endblock page_heading %}
+          
+          {% if messages %}
+            {% for message in messages %}
+              <div alert class="relative justify-left p-4 pr-12 mb-4 text-white border border-solid rounded-lg bg-gradient-to-tl from-slate-600 to-slate-300 border-slate-100">
+              {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
         </div>
         {% block content %}{% endblock content %}
         

@@ -1,0 +1,27 @@
+{% extends "layouts/base-shadow.html" %}
+{% load static %}
+
+{% block page_heading %}
+<h2> Add Books by ISBN </h2>
+{% endblock page_heading %}
+
+{% block content %}
+ <div class="flex flex-wrap mt-4 justify-center -mx-3">
+
+    <div class="w-full max-w-full px-1 shrink-0 md:w-6/12 md:flex-0 md:mt-0">
+    
+        <div class="p-4  bg-white border-0 border-solid shadow-xl dark:bg-slate-850 dark:shadow-dark-xl dark:bg-gray-950 border-black-125 rounded-2xl bg-clip-border">
+        <form action="{% url 'add_by_isbn' %}" method="post">
+            {% csrf_token %}
+            <label class="mb-2 ml-1 font-bold text-xs text-slate-700">ISBN List</label>
+            <textarea name="isbn_list" rows="5" placeholder="Enter list of ISBN" class="focus:shadow-primary-outline min-h-unset text-sm leading-5.6 ease block h-auto w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none"></textarea>
+            {% if form.isbn_list.errors %}
+                {% for error in form.isbn_list.errors %}
+                    <span class="block my-2 text-red-600 text-sm">{{ error }}</span>
+                {% endfor %}
+            {% endif %}
+            <button type="submit" class="inline-block w-full px-16 py-3.5 mt-6 mb-0 font-bold leading-normal text-center text-white align-middle transition-all bg-blue-500 border-0 rounded-lg cursor-pointer hover:-translate-y-px active:opacity-85 hover:shadow-xs text-sm ease-in tracking-tight-rem shadow-md bg-150 bg-x-25">Add Books</button>
+        </div>
+    </div>
+</div>
+{% endblock content %}

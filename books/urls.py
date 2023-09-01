@@ -14,11 +14,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path
-from .views import BookListView, BookDetailView, BorrowBookView
+from .views import BookListView, BookDetailView, AddBookByIsbn
 urlpatterns = [
     path('', BookListView.as_view(), name='book_list' ),
     path('<uuid:pk>', BookDetailView.as_view(), name='book_detail' ),
-    path('borrow/<str:pk>', BorrowBookView.as_view(), name='borrow_book' ),
-    # path('search/', SearchBookView.as_view(), name='search_book' ),
-
+    path('addbyisbn/', AddBookByIsbn.as_view(), name='add_by_isbn' ),
 ]

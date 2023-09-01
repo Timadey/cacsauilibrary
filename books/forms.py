@@ -1,11 +1,11 @@
 from django import forms
-from .models import BookRequest
 
-class BookRequestForm(forms.ModelForm):
-    """A form for managing book request"""
-    class Meta:
-        model = BookRequest
-        fields = []
 
 class BookSearchForm(forms.Form):
     q = forms.CharField(required=True)
+
+
+class AddBookByIsbnForm(forms.Form):
+    isbn_list = forms.CharField(
+        required=True, help_text="Enter ISBN of books to add one per line"
+    )

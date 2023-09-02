@@ -13,7 +13,9 @@ class Author(models.Model):
     """The author of a book"""
 
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
+    open_library_key = models.CharField(null=True, blank=True, max_length=20)
     names = models.CharField(max_length=256, blank=False, default="Alex John")
+    bio = models.CharField(max_length=2048, null=True, blank=True)
 
 
     class Meta:
@@ -63,8 +65,12 @@ class Book(models.Model):
     title = models.CharField(max_length=256)
     author = models.ForeignKey(Author, related_name="books", on_delete=models.PROTECT)
     summary = models.TextField(max_length=1024, null=True, blank=True)
-    isbn = models.CharField("ISBN", max_length=13, blank=True)
-    cover = models.ImageField(blank=True, upload_to="covers/")
+    isbn = models.CharField("ISBN_13", max_length=13, blank=True)
+    isbn_10 = models.CharField("ISBN_10", max_length=10, null=True, blank=True)
+    num_of_pages = models.CharField(max_length=6, null=True, blank=True)
+    cover_src = models.CharField(max_length=50, null=True, blank=True)
+    cover = models.ImageField(blank=True, upload_to="covers/", null=True)
+    published_date = models.CharField(max_length=50, null=True, blank=True)
     date_added = models.DateField(auto_now_add=True)
 
     class Meta:

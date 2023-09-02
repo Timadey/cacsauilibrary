@@ -1,4 +1,5 @@
 jstoolchain
 staticfiles
+.env
 */__pycache__
 */migrations

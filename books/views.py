@@ -1,5 +1,6 @@
 from typing import Any
 
+import requests
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.db.models import Q, QuerySet
 from django.db.models.query import QuerySet
@@ -8,7 +9,9 @@ from django.urls import reverse
 from django.views.generic import DetailView, ListView, View
 
 from .forms import AddBookByIsbnForm, BookSearchForm
-from .models import Book
+from .models import Book, Author
+from pprint import pprint
+
 
 
 # Create your views here.
@@ -51,9 +54,19 @@ class AddBookByIsbn(PermissionRequiredMixin, View):
         form = AddBookByIsbnForm(self.request.POST)
         if form.is_valid():
             isbn_list = form.cleaned_data["isbn_list"]
-            isbn_list = isbn_list.split("\r\n")
-            print("egbjebfuy")
-            print(isbn_list)
+            isbn_list = isbn_list.replace('\r', '').split("\n")
+            for isbn in isbn_list:
+                url = f"https://openlibrary.org/isbn/{isbn}.json"
+                resp = requests.get(url)
+                not_found = []
+                if resp.status_code is not 400:
+                    book = resp.json()
+                    # author = Author.objects.get_or_create(open_library_key=book.auth)
+                    pprint(book)
+                else:
+                    not_found.append(isbn)
+                    pprint(not_found)
+
             return redirect(reverse('add_by_isbn'))
         else:
             return render(request, self.template_name, context={'form':form})
